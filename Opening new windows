@@ -1,0 +1,15 @@
+from tkinter import *
+
+def create_window():
+    new_window = Tk()
+    #new_window = Tk() new independent window not linked to the bottom/original window
+    #new_window = Toplevel() to make a new window on top of other windows, linked to a bottom window, bottom window being the main window - root
+    #root.destroy() This will close the original/old window 
+    root.destroy()
+
+
+root = Tk()
+
+button = Button(root, text='Create new window', command=create_window).pack()
+
+root.mainloop()
