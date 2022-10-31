@@ -1,0 +1,17 @@
+from tkinter import *
+import tkinter
+from tkinter.font import BOLD
+
+root = Tk()
+
+frame = Frame(root, bg='#0d66b5', bd=5, relief=SUNKEN)
+#frame.place(x=500, y=500) # to place the container at specific coordinates
+#frame.pack(side='bottom') # to place the container in a general location
+
+button = Button(frame, text='W', font=('Calibri', 25, BOLD), width=3).pack(side='top')
+button = Button(frame, text='A', font=('Calibri', 25, BOLD), width=3).pack(side='left')
+button = Button(frame, text='S', font=('Calibri', 25, BOLD), width=3).pack(side='left')
+button = Button(frame, text='D', font=('Calibri', 25, BOLD), width=3).pack(side='left')
+
+
+root.mainloop()
