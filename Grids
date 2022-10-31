@@ -1,0 +1,21 @@
+from tkinter import *
+from tkinter.font import BOLD
+
+#Column width is dependent on the width of the longest widget
+
+root = Tk()
+
+titleLabel = Label(root, text='Enter your info', font=('Arial', 16, BOLD)).grid(row=0, column=0, columnspan=2)
+
+firstName = Label(root, text='First Name: ', width=20, bg='red').grid(row=1, column=0)
+firstNameEntry = Entry(root).grid(row=1, column=1)
+
+lastName = Label(root, text='Last Name: ',bg='navy').grid(row=2, column=0)
+lastNameEntry = Entry(root).grid(row=2, column=1)
+
+email = Label(root, text='Email: ', bg='green', width=30).grid(row=3, column=0)
+emailEntry = Entry(root).grid(row=3, column=1)
+
+submit = Button(root, text='Submit').grid(row=4, column=0, columnspan=2)
+
+root.mainloop()
