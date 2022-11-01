@@ -1,0 +1,28 @@
+from tkinter import *
+#Key Events, assigning functions to keys, on the keyboard, such as WASD, or UP, DOWN, LEFT, RIGHT, ENTER button is RETURN
+#.keysym is utilized to display the key that was pressed on the keyboard.
+
+
+def doSomething(event):
+    #print(f'you did a thing! You pressed the {event.keysym} button')
+    label.config(text=event.keysym)#Displays the key symbol onto the label made below, changes dynamically
+
+def closeWindow(event):
+    print('Closing window')
+    root.destroy()
+
+def newWindow(event):
+    print('Opening new window')
+    new_window = Tk()
+    root.destroy()
+
+root = Tk()
+#root.bind("<Key>", doSomething) # Entering Key in the event will allow you to press ANY key
+#root.bind("<Return>", doSomething) #Return is the ENTER KEY
+#root.bind("<q>", closeWindow)
+#root.bind("<n>", newWindow)
+
+label = Label(root, font=('arial', 25))
+label.pack()
+
+root.mainloop()
