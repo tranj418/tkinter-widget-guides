@@ -1,0 +1,33 @@
+from email.mime import image
+from tkinter import *
+
+def move_up(event):
+    canvas.move(myImg, 0, -30)
+
+def move_down(event):
+    canvas.move(myImg, 0,30)
+
+def move_left(event):
+    canvas.move(myImg, -30, 0)
+
+def move_right(event):
+    canvas.move(myImg, 30, 0)
+
+def close_window(event):
+    root.destroy()
+
+
+root = Tk()
+canvas = Canvas(root, height=500, width=500)
+root.bind('<Up>', move_up)
+root.bind('<Down>', move_down)
+root.bind('<Left>', move_left)
+root.bind('<Right>', move_right)
+root.bind('<Escape>', close_window) #To close the entire window
+
+photoimage = PhotoImage(file='minisoup.png')
+myImg = canvas.create_image(0, 0, image=photoimage, anchor=NW) #The anchor places it in a certain sector, coordinates only will cut it off canvas
+
+
+canvas.pack()
+root.mainloop()
