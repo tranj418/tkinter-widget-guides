@@ -1,0 +1,24 @@
+from tkinter import *
+from tkinter.ttk import Style
+from turtle import width
+
+root = Tk()
+
+canvas = Canvas(root, height=500, width=500)
+#blue_line = canvas.create_line(0,0, 500,500, fill='blue', width=5)# will need to enter in coordinates.
+#red_line = canvas.create_line(0,500, 500,0, fill='red', width=5)
+#canvas.create_rectangle(50,50,250,250, fill='green')
+points = [250, 0, 500, 500, 0, 500]
+#canvas.create_polygon(points, fill='gold',outline='black', width=10) #the coordinate arguments for this function can accept tuples, lists
+#canvas.create_arc(0, 0, 500, 500, fill='red', style=PIESLICE, start=90, extent=180) #Pie slice image, the start function shifted it 90 degrees counterclockwise
+
+#Creating a pokeball section
+
+top = canvas.create_arc(0, 0, 500, 500, fill='red', extent=180, width=5)
+bottom = canvas.create_arc(0, 0, 500, 500, fill='white', extent=180, width=5, start=180)
+circle = canvas.create_oval(190, 190, 310, 310, fill='white', width=10)
+
+
+
+canvas.pack()
+root.mainloop()
