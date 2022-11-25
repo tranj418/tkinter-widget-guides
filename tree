@@ -1,0 +1,222 @@
+from tkinter import *
+import tkinter as tk
+from tkinter import ttk
+from tkinter import font
+from tkinter import messagebox
+from tkinter.font import BOLD
+from tkinter.ttk import Treeview
+from unicodedata import name
+import mysql.connector
+
+
+root = Tk()
+root.geometry('1400x800') #width x heigh
+root.config(background='White')
+
+mydb=mysql.connector.connect(
+            host= "127.0.0.1",
+            user= "root",
+            password= "2193ECAstle!!",
+            database='one_piece',
+            autocommit=True)
+mycursor= mydb.cursor()
+
+query = 'select * from char_snapshot'
+mycursor.execute(query)
+
+
+#-------------------function section------------------------
+def display():
+    try:
+        mydb=mysql.connector.connect(
+            host= "127.0.0.1",
+            user= "root",
+            password= "2193ECAstle!!",
+            database='one_piece',
+            autocommit=True)
+        mycursor= mydb.cursor()
+        messagebox.showinfo(title='Success', message='Connected to One Piece DB successfully')
+    except:
+        messagebox.showerror(title='Error', message='Cannot connect to DB, examine MySQL connection')
+
+def add():
+    try:
+        mydb=mysql.connector.connect(
+            host= "127.0.0.1",
+            user= "root",
+            password= "2193ECAstle!!",
+            database='one_piece',
+            autocommit=True)
+        mycursor= mydb.cursor()
+        messagebox.showinfo(title='Success', message='Connected to One Piece DB successfully')
+    except:
+        messagebox.showerror(title='Error', message='Cannot connect to DB, examine MySQL connection')
+
+def delete():
+    try:
+        mydb=mysql.connector.connect(
+            host= "127.0.0.1",
+            user= "root",
+            password= "2193ECAstle!!",
+            database='one_piece',
+            autocommit=True)
+        mycursor= mydb.cursor()
+        messagebox.showinfo(title='Success', message='Connected to One Piece DB successfully')
+    except:
+        messagebox.showerror(title='Error', message='Cannot connect to DB, examine MySQL connection')
+
+def update():
+    try:
+        mydb=mysql.connector.connect(
+            host= "127.0.0.1",
+            user= "root",
+            password= "2193ECAstle!!",
+            database='one_piece',
+            autocommit=True)
+        mycursor= mydb.cursor()
+        messagebox.showinfo(title='Success', message='Connected to One Piece DB successfully')
+    except:
+        messagebox.showerror(title='Error', message='Cannot connect to DB, examine MySQL connection')
+
+
+
+#-------------------widget section for labels------------------------
+header = Label(root, text='One Piece GUI', font=('Arial', 24, BOLD), background='#faef20')
+header.place(x=700, y=0)
+
+charName = Label(root, text='Name - required *', font=('Arial', 16, BOLD), background='White')
+charName.place(x=0, y=100)
+
+crewName = Label(root, text='Crew Name', font=('Arial', 16, BOLD), background='White')
+crewName.place(x=0, y=160)
+
+dfName = Label(root, text='Devil Fruit', font=('Arial', 16, BOLD), background='White')
+dfName.place(x=0, y=220)
+
+hakiName = Label(root, text='Haki Type', font=('Arial', 16, BOLD), background='White')
+hakiName.place(x=0, y=280)
+
+plName = Label(root, text='Power Level', font=('Arial', 16, BOLD), background='White')
+plName.place(x=0, y=340)
+
+bountyLabel = Label(root, text='Bounty', font=('Arial', 16, BOLD), background='White')
+bountyLabel.place(x=0, y=400)
+
+
+#-------------------widget section for entry boxes------------------------
+nameEntry = Entry(root, font=('Arial', 16), width=80, bd=5)
+nameEntry.place(x=220, y=100)
+
+crewEntry = Entry(root, font=('Arial', 16), width=80, bd=5)
+crewEntry.place(x=220, y=160)
+
+dfEntry = Entry(root, font=('Arial', 16), width=80, bd=5)
+dfEntry.place(x=220, y=220)
+
+hakiEntry = Entry(root, font=('Arial', 16), width=80, bd=5)
+hakiEntry.place(x=220, y=280)
+
+plEntry = Entry(root, font=('Arial', 16), width=80, bd=5)
+plEntry.place(x=220, y=340)
+
+bountyEntry = Entry(root, font=('Arial', 16), width=80, bd=5)
+bountyEntry.place(x=220, y=400)
+
+
+#-------------------widget section for buttons------------------------
+displayBtn = Button(root, text='Display All', font=('Arial', 16, BOLD), background='#149cf7', activebackground='#149cf7', padx=20)
+displayBtn.place(x=0, y=480)
+addBtn = Button(root, text='Add', font=('Arial', 16, BOLD), background='#149cf7', activebackground='#149cf7', padx=20)
+addBtn.place(x=180, y=480)
+
+deleteBtn = Button(root, text='Delete', font=('Arial', 16, BOLD), background='#149cf7', activebackground='#149cf7', padx=20)
+deleteBtn.place(x=300, y=480)
+
+updateBtn = Button(root, text='Update', font=('Arial', 16, BOLD), background='#149cf7', activebackground='#149cf7', padx=20)
+updateBtn.place(x=440, y=480)
+
+searchBtn = Button(root, text='Search', font=('Arial', 16, BOLD), background='#149cf7', activebackground='#149cf7', padx=20)
+searchBtn.place(x=590, y=480)
+
+
+tree = Treeview(root)
+tree['show']='headings'
+
+# themes available to use 'clam', 'alt', 'default', 'classic'   these 2 do not work --> 'vista', 'xpnative'
+s = ttk.Style(root)
+s.theme_use('default')
+
+s.configure('Treeview.Heading', foreground='red', font=('Helvetica', 12, BOLD)) #For the column headers
+s.configure('.', font=('Arial', 11))
+
+#define num of columns, must be a tuple
+tree['columns']=('Char_name', 'pirate_crew', 'df', 'haki_type', 'power_level_desc', 'bounty')
+
+
+
+
+#assign the width
+#tree.column('char_id', width=40, minwidth=20, anchor=tk.CENTER)
+tree.column('Char_name', width=180, minwidth=160, anchor=tk.CENTER)
+tree.column('pirate_crew', width=180, minwidth=160, anchor=tk.CENTER)
+tree.column('haki_type', width=140, minwidth=100, anchor=tk.CENTER)
+tree.column('power_level_desc', width=180, minwidth=160, anchor=tk.CENTER)
+#tree.column('faction_id', width=40, minwidth=20, anchor=tk.CENTER)
+#tree.column('crew_id', width=40, minwidth=20, anchor=tk.CENTER)
+#tree.column('age', width=40, minwidth=20, anchor=tk.CENTER)
+#tree.column('loc_num', width=40, minwidth=20, anchor=tk.CENTER)
+tree.column('df', width=180, minwidth=160, anchor=tk.CENTER)
+#tree.column('haki_y_n', width=40, minwidth=20, anchor=tk.CENTER)
+#tree.column('haki_num', width=40, minwidth=20, anchor=tk.CENTER)
+tree.column('bounty', width=180, minwidth=160, anchor=tk.CENTER)
+#tree.column('power_level_id', width=180, minwidth=50, anchor=tk.CENTER)
+
+
+
+
+
+#Assign the heading names to the columns
+tree.heading('Char_name', text='Name', anchor=tk.CENTER)
+tree.heading('pirate_crew', text='Crew Name', anchor=tk.CENTER)
+tree.heading('haki_type', text='Haki Type', anchor=tk.CENTER)
+tree.heading('power_level_desc', text='Power Level', anchor=tk.CENTER)
+tree.heading('df', text='Devil Fruit', anchor=tk.CENTER)
+tree.heading('bounty', text='Bounty', anchor=tk.CENTER)
+
+
+#tree.heading('char_id', text='Character ID', anchor=tk.CENTER)
+#tree.heading('char_name', text='Name', anchor=tk.CENTER)
+#tree.heading('faction_id', text='Faction ID', anchor=tk.CENTER)
+#tree.heading('crew_id', text='Crew ID', anchor=tk.CENTER)
+#tree.heading('age', text='Age', anchor=tk.CENTER)
+#tree.heading('loc_num', text='Location Num', anchor=tk.CENTER)
+#tree.heading('df', text='Devil Fruit Y/N', anchor=tk.CENTER)
+#tree.heading('haki_y_n', text='Haki Y/N', anchor=tk.CENTER)
+#tree.heading('haki_num', text='Haki Num', anchor=tk.CENTER)
+#tree.heading('bounty', text='Bounty', anchor=tk.CENTER)
+#tree.heading('power_level_id', text='Power Level ID', anchor=tk.CENTER)
+
+
+i=0
+for row in mycursor:
+    tree.insert('', i, text='', values=(row[0], row[1], row[2], row[3], row[4], row[5]))
+    i=i+1
+
+#Horizonotal scroll bar
+hsb = ttk.Scrollbar(root, orient='horizontal')
+
+hsb.configure(command=tree.xview)
+tree.configure(xscrollcommand=hsb.set)
+hsb.pack(fill=X, side=BOTTOM)
+
+
+vsb = ttk.Scrollbar(root, orient='vertical')
+
+vsb.configure(command=tree.yview)
+tree.configure(yscrollcommand=vsb.set)
+vsb.pack(fill=Y, side=RIGHT)
+
+tree.pack(side=BOTTOM)
+
+
+root.mainloop()
